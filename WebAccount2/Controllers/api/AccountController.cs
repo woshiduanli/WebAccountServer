@@ -70,22 +70,22 @@ namespace WebAccount.Controllers.api
             string deviceModel = jsonData["deviceModel"].ToString();
             string sign = jsonData["sign"].ToString();
 
-            //   1.判断时间戳 如果大于3秒 直接返回错误
-            if (MFDSAUtil.GetTimestamp() - t > 3)
-            {
-                ret.HasError = true;
-                ret.ErrorMsg = "请求无效";
-                return ret;
-            }
+            ////   1.判断时间戳 如果大于3秒 直接返回错误
+            //if (MFDSAUtil.GetTimestamp() - t > 3)
+            //{
+            //    ret.HasError = true;
+            //    ret.ErrorMsg = "请求无效";
+            //    return ret;
+            //}
 
-            //  2.验证签名
-            string signServer = MFEncryptUtil.Md5(string.Format("{0}:{1}", t, deviceIdentifier));
-            if (!signServer.Equals(sign, StringComparison.CurrentCultureIgnoreCase))
-            {
-                ret.HasError = true;
-                ret.ErrorMsg = "请求无效";
-                return ret;
-            }
+            ////  2.验证签名
+            //string signServer = MFEncryptUtil.Md5(string.Format("{0}:{1}", t, deviceIdentifier));
+            //if (!signServer.Equals(sign, StringComparison.CurrentCultureIgnoreCase))
+            //{
+            //    ret.HasError = true;
+            //    ret.ErrorMsg = "请求无效";
+            //    return ret;
+            //}
 
 
             int type = Convert.ToInt32(jsonData["Type"].ToString());
