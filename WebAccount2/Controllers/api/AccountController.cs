@@ -28,32 +28,33 @@ namespace WebAccount.Controllers.api
         string conStr = "Data Source=.;Initial Catalog=DBAccount;User ID=suzhen2;Password=123456";
         // GET: api/Account/5
         // GET: api/Account/5
-        public AccountEntity Get(int id)
+        public int Get(int id)
         {
+            return 9; 
             //Console.w("dfsfddddddddddddddddds");
 
-            AccountEntity cccountEntity = new AccountEntity();
-            using (SqlConnection conn = new SqlConnection(conStr))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Account_GetEntity", conn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Id", id));
-                using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
-                {
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            cccountEntity.Id = dr["Id"] is DBNull ? 0 : (int)dr["Id"];
-                            cccountEntity.UserName = dr["UserName"] is DBNull ? "" : (string)dr["UserName"];
+            //AccountEntity cccountEntity = new AccountEntity();
+            //using (SqlConnection conn = new SqlConnection(conStr))
+            //{
+            //    conn.Open();
+            //    SqlCommand cmd = new SqlCommand("Account_GetEntity", conn);
+            //    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //    cmd.Parameters.Add(new SqlParameter("@Id", id));
+            //    using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+            //    {
+            //        if (dr.HasRows)
+            //        {
+            //            while (dr.Read())
+            //            {
+            //                cccountEntity.Id = dr["Id"] is DBNull ? 0 : (int)dr["Id"];
+            //                cccountEntity.UserName = dr["UserName"] is DBNull ? "" : (string)dr["UserName"];
 
-                            return cccountEntity;
-                        }
-                    }
-                }
-            }
-            return null;
+            //                return cccountEntity;
+            //            }
+            //        }
+            //    }
+            //}
+            //return null;
         }
 
         // POST: api/Account
