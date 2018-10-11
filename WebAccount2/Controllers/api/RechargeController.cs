@@ -10,7 +10,8 @@ using System.Web.Http;
 public class RetValue {
     public bool HasError; 
     public string ErrorMsg;
-    public string Value; 
+    public string Value;
+    public string Type; 
 }
 
 namespace WebAccount.Controllers.api
