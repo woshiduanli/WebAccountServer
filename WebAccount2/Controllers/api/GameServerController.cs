@@ -18,11 +18,11 @@ namespace WebAccount.Controllers.api
         }
 
         // GET: api/GameServer/5
-        public List<RetGameServerEntity> Get(int id)
+        public List<RetGameServerPageEntity> Get(int id)
         {
             return null;
             //return GameServerCacheModel.Instance.GetGameServerList(id);
-            //return GameServerCacheModel.Instance.GetGameServerPageList();
+            //return GameServerCacheModel.Instance.GetGameServerPageList(null);
         }
 
         // POST: api/GameServer
@@ -59,10 +59,15 @@ namespace WebAccount.Controllers.api
 
             if (type == 0)
             {
+
                 string channelId = jsonData["ChannelId"].ToString();
                 string innerVersion = jsonData["InnerVersion"].ToString();
 
                 //先获取渠道状态 根据渠道状态 来加载不同的区服
+
+                //ChannelEntity entity = ChannelCacheModel.Instance.GetEntity(string.Format("[ChannelId]={0} and [InnerVersion]={1}", channelId, innerVersion));
+
+                // 暂时写死   chanId = 0, innerVersion = 1001
                 ChannelEntity entity = ChannelCacheModel.Instance.GetEntity(string.Format("[ChannelId]={0} and [InnerVersion]={1}", channelId, innerVersion));
                 if (entity == null)
                 {
@@ -76,10 +81,8 @@ namespace WebAccount.Controllers.api
             }
             else if (type == 1)
             {
-                //string channelId = jsonData["ChannelId"].ToString();
-                string channelId = "0"; 
-                //string innerVersion = jsonData["InnerVersion"].ToString();
-                string innerVersion = 1001.ToString ();
+                string channelId = jsonData["ChannelId"].ToString();
+                string innerVersion = jsonData["InnerVersion"].ToString();
 
 
                 //先获取渠道状态 根据渠道状态 来加载不同的区服
@@ -89,8 +92,6 @@ namespace WebAccount.Controllers.api
                     ret.HasError = true;
                     ret.ErrorMsg = "渠道号不存在";
                 }
-                // 这里写死
-                //entity.ChannelStatus = 0;
                 int pageIndex = int.Parse(jsonData["pageIndex"].ToString());
                 //获取区服列表
                 return GameServerCacheModel.Instance.GetGameServerList(pageIndex, string.Format("[ChannelStatus]={0}", entity.ChannelStatus));

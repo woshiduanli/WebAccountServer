@@ -11,7 +11,8 @@ public class RetValue {
     public bool HasError; 
     public string ErrorMsg;
     public string Value;
-    public string Type; 
+    public string Type;
+   public System.Object objValue; 
 }
 
 namespace WebAccount.Controllers.api
